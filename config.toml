@@ -1,0 +1,33 @@
+baseurl = "https://www.joc-gafo.org/"
+title = "Jamie Oliver Club in GaFo"
+theme = "hugo-creative-portfolio-theme"
+languageCode = "en-gb"
+disqusShortname = ""
+googleAnalytics = ""
+
+[params]
+style = "default"
+description = ""
+copyright = "&copy;2015–2017 JOC-GaFo"
+sidebarAbout = [
+  "Cafeteria food can be healthy and delicious!",
+]
+email = ""
+
+[[params.navlinks]]
+name = "Home"
+url = ""
+
+[[params.navlinks]]
+name = "About"
+url = "about/"
+
+[params.social]
+facebook      = ""
+googleplus    = ""
+email         = ""
+twitter       = ""
+linkedin      = ""
+stackoverflow = ""
+instagram     = "?"
+github        = "https://github.com/joc-gafo"
