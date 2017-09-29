@@ -6,7 +6,7 @@ disqusShortname = ""
 googleAnalytics = ""
 
 [params]
-style = "default"
+style = "blue"
 description = ""
 copyright = "&copy; 2015–2017 JOC in GaFo"
 sidebarAbout = []
