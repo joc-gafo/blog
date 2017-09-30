@@ -1,0 +1,4 @@
+[submodule "themes/hugo-creative-portfolio-theme"]
+	path = themes/hugo-creative-portfolio-theme
+	url = https://github.com/joc-gafo/hugo-creative-portfolio-theme.git
+	branch = master
