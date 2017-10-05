@@ -1,12 +1,11 @@
 language: python
-
-matrix:
-  include:
-    - python: "3.6"
+python: "3.5"
+cache: pip
 
 install:
   - if [ -z "$TRAVIS_TAG" ]; then exit 0;  fi
   - pip install awscli
+  - ./create_credentials.sh
 
 script:
   - wget https://github.com/gohugoio/hugo/releases/download/v0.29/hugo_0.29_Linux-64bit.tar.gz -O hugo.tar.gz
@@ -17,6 +16,7 @@ script:
   - coverage run --source=blockschaltbilder setup.py test
   - aws configure set preview.cloudfront true
   - aws cloudfront create-invalidation --distribution-id EPNLPWEUBLA8I --paths '/*'
+
 env:
   global:
     - secure: kTrQRbIHOnv7QWgQUl4pEB2Nmeb+H1ey6QObzvBjrAHqtc8t61YrU6CuMAYwXOLD7c9Uc00yT+7u75+++qa7qxBNEPuAGoGN/QvptxVo6vzM5gpd2b3k3GwRm6E3dhJLbN1fr5yAaPRa7mXicVcdqYHhfqQrQhsnagTbWmz4QlgDg9ipLCCljBESnqBjp7rqoIjNMcaT+h/S6Ooj4kjjGI834+gPpAtN3UaHXsHlxc1ZEpC5FVwYroy+fxUBJFegUGnXnaQMpj1Jr5zS3zAEXP1B3rKTq5pV40a4dOFMMMvCJCt+IC8B0prShlaBXDp6IL7shbrd5I+T80YYsE7LpqV2w50lbTnm+kW/lbqhPj+PTnMyn3q4qrZql+o/PdjnxvgQ6KTgirRt9HOXrrRmXIn97OdzutGCQdUBkch1pJaDcv3nIapav1Gxt/5aie0gQi1lOd0xbVhEZQox/IWJGatngqiB3Mt2qq0JTDPtEHMBBaSQn2rcv1OBUKiV2Eabhatx/nxQuBcPbdWANgnyS4VAFImB7UUBaF6CMHoOfL0Z1HQQEQgakNLLUDObRGm4U+a4xd6lS0h3gHmR2ht3455nBnhocX3SdflMzc00V4O3QeuhhQoyC9MjozzU0vPDEWIi+wlxehiwXVF8UgffJ2xSBGx6+cmqK791cxTHzes=
