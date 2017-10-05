@@ -2,6 +2,9 @@ language: python
 python: '3.5'
 cache: pip
 
+before_install:
+  - if [ -z "$TRAVIS_TAG" ]; then exit 0; fi
+
 install:
   - pip install awscli
 
@@ -11,6 +14,7 @@ script:
   - tar xvzf hugo.tar.gz
   - rm -rf "./public/"
   - "./hugo"
+  - aws s3 sync s3://joc-gafo-binaries "./static/img/"
   - aws s3 sync --acl public-read --sse --delete "./public/" s3://www.joc-gafo.org
   - aws cloudfront create-invalidation --distribution-id EPNLPWEUBLA8I --paths '/*'
 
