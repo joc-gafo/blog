@@ -2,19 +2,14 @@ language: python
 python: "3.5"
 cache: pip
 
-install:
-  - if [ -z "$TRAVIS_TAG" ]; then exit 0;  fi
-  - pip install awscli
-  - ./.create_credentials.sh
-
 script:
+  - pip install awscli
+  - aws configure set preview.cloudfront true
   - wget https://github.com/gohugoio/hugo/releases/download/v0.29/hugo_0.29_Linux-64bit.tar.gz -O hugo.tar.gz
   - tar xvzf hugo.tar.gz
   - rm -rf "./public/"
   - ./hugo
   - aws s3 sync --acl public-read --sse --delete "./public/" s3://www.joc-gafo.org
-  - coverage run --source=blockschaltbilder setup.py test
-  - aws configure set preview.cloudfront true
   - aws cloudfront create-invalidation --distribution-id EPNLPWEUBLA8I --paths '/*'
 
 env:
