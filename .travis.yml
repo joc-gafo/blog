@@ -5,7 +5,7 @@ cache: pip
 install:
   - if [ -z "$TRAVIS_TAG" ]; then exit 0;  fi
   - pip install awscli
-  - ./create_credentials.sh
+  - ./.create_credentials.sh
 
 script:
   - wget https://github.com/gohugoio/hugo/releases/download/v0.29/hugo_0.29_Linux-64bit.tar.gz -O hugo.tar.gz
