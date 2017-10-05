@@ -2,8 +2,10 @@ language: python
 python: '3.5'
 cache: pip
 
-script:
+install:
   - pip install awscli
+
+script:
   - aws configure set preview.cloudfront true
   - wget https://github.com/gohugoio/hugo/releases/download/v0.29/hugo_0.29_Linux-64bit.tar.gz -O hugo.tar.gz
   - tar xvzf hugo.tar.gz
