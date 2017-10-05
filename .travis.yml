@@ -10,11 +10,11 @@ install:
 
 script:
   - aws configure set preview.cloudfront true
+  - aws s3 sync s3://joc-gafo-binaries "./static/img/"
   - wget https://github.com/gohugoio/hugo/releases/download/v0.29/hugo_0.29_Linux-64bit.tar.gz -O hugo.tar.gz
   - tar xvzf hugo.tar.gz
   - rm -rf "./public/"
   - "./hugo"
-  - aws s3 sync s3://joc-gafo-binaries "./static/img/"
   - aws s3 sync --acl public-read --sse --delete "./public/" s3://www.joc-gafo.org
   - aws cloudfront create-invalidation --distribution-id EPNLPWEUBLA8I --paths '/*'
 
