@@ -14,7 +14,11 @@ synchronised with the `static/img` folder manually using AWS CLI.
    Copy the preamble (stuff between `+++`) from an existing post.
 1. Edit the preamble: title, timestamp etc.
 1. Create content! You can see the changes live at `localhost:1313` if you run `make dev`.
-1. When you're done, deploy the changes to S3 by typing `make deploy`.
-1. Invalidate AWS CloudFront cache. This may take up to 15 minutes.
+1. When you're done:
+    * If you have AWS credentials, you can build locally and deploy the changes to
+      S3 by typing `make deploy`. CloudFront cache will be invalidated as well.
+    * If not, you can commit and push to GitHub. Travis CI will build and deploy on tag commits.
+      _However, we do not want to abuse Travis' free service!_
+      Please build and deploy locally if you can.
 1. ???
 1. PROFIT!
