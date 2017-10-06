@@ -9,6 +9,7 @@ sync_images: ## Sync images with the S3 bucket
 
 deploy: ## Build and deploy site to the primary S3 bucket, invalidate CloudFront cache
 	aws configure set preview.cloudfront true
+	exiftool -overwrite_original_in_place -r -all= "./static/img/"
 	rm -rf "./public/"
 	hugo
 	aws s3 sync --acl public-read --sse --delete "./public/" s3://www.joc-gafo.org
